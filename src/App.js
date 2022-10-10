@@ -1,6 +1,7 @@
 import logo from "./logo.svg"
 import "./App.css"
 import HomePage from "./pages/HomePage"
+import SignInPage from "./pages/SignInPage"
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           </a>
         </div>
       </nav>
-      <HomePage />
+      <SignInPage />
       <footer className="footer">
         <p className="footer-text">Copyright 2020 Argent Bank</p>
       </footer>
