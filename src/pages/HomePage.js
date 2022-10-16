@@ -1,6 +1,24 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import axios from "axios"
 
 export default function HomePage() {
+  const [me, setMe] = useState()
+  useEffect(() => {
+    const token = ''
+    axios
+      .post("http://localhost:3001/api/v1/user/profile", null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setMe(res.data.body)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   return (
     <main>
       <div
@@ -10,6 +28,7 @@ export default function HomePage() {
         }}
       >
         <section className="hero-content">
+          {me ? <h1>Bonjour, {me.firstName}</h1> : null}
           <h2 className="sr-only">Promoted Content</h2>
           <p className="subtitle">No fees.</p>
           <p className="subtitle">No minimum deposit.</p>

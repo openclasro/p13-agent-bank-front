@@ -1,9 +1,12 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function SignInPage() {
   const [username, setUsername] = useState("tony@stark.com")
   const [password, setPassword] = useState("password123")
+
+  const navigate = useNavigate()
 
   function signIn() {
     axios
@@ -12,7 +15,12 @@ export default function SignInPage() {
         password: password,
       })
       .then((res) => {
-        console.log(res)
+        // Je suis connecte
+        // 1. je prends mon token
+        // 2. je save mon token => pour le reutiliser apres
+        // 3. naviguer vers la home page
+        navigate('/')
+        
       })
       .catch((err) => {
         console.log(err)
