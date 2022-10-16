@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
+import { useSelector, useDispatch } from "react-redux"
+import { meSlice } from "../store"
 
 export default function HomePage() {
-  const [me, setMe] = useState()
+  const me = useSelector((state) => state.me)
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    const token = ''
-    axios
-      .post("http://localhost:3001/api/v1/user/profile", null, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setMe(res.data.body)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    console.log(me)
+    if (me && me.token) {
+      axios
+        .post("http://localhost:3001/api/v1/user/profile", null, {
+          headers: {
+            Authorization: `Bearer ${me.token}`,
+          },
+        })
+        .then((res) => {
+          dispatch(meSlice.actions.setMe(res.data.body))
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }, [])
 
   return (
@@ -28,7 +34,7 @@ export default function HomePage() {
         }}
       >
         <section className="hero-content">
-          {me ? <h1>Bonjour, {me.firstName}</h1> : null}
+          {me && me.profile ? <h1>Bonjour, {me.profile.firstName}</h1> : null}
           <h2 className="sr-only">Promoted Content</h2>
           <p className="subtitle">No fees.</p>
           <p className="subtitle">No minimum deposit.</p>

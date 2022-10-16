@@ -1,11 +1,16 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { meSlice } from "../store"
 
 export default function SignInPage() {
   const [username, setUsername] = useState("tony@stark.com")
   const [password, setPassword] = useState("password123")
 
+  const dispatch = useDispatch()
+  const me = useSelector((state) => state.me)
+  console.log(me)
   const navigate = useNavigate()
 
   function signIn() {
@@ -15,12 +20,8 @@ export default function SignInPage() {
         password: password,
       })
       .then((res) => {
-        // Je suis connecte
-        // 1. je prends mon token
-        // 2. je save mon token => pour le reutiliser apres
-        // 3. naviguer vers la home page
-        navigate('/')
-        
+        dispatch(meSlice.actions.signIn(res.data.body.token))
+        navigate("/")
       })
       .catch((err) => {
         console.log(err)
