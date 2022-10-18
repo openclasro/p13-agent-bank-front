@@ -1,12 +1,17 @@
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 export default function UsersPage() {
   const me = useSelector((state) => state.me)
   const navigate = useNavigate()
-  if (!me) {
-    navigate("/signin")
-  }
+
+  useEffect(() => {
+    if (!me) {
+      navigate("/signin")
+    }
+  }, [])
+
   return (
     <main className="main bg-dark">
       {me && me.profile ? (
