@@ -11,7 +11,7 @@ function App() {
 
   function logout() {
     dispatch(meSlice.actions.logout())
-    navigate("/signin")
+    navigate("/")
   }
   return (
     <div>
