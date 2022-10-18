@@ -1,11 +1,18 @@
 import "./App.css"
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { meSlice } from "./store"
 
 function App() {
   const me = useSelector((state) => state.me)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
+  function logout() {
+    dispatch(meSlice.actions.logout())
+    navigate("/signin")
+  }
   return (
     <div>
       <nav className="main-nav">
@@ -17,15 +24,19 @@ function App() {
           />
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
-
-        {me && me.profile ? null : (
-          <div>
+        <div>
+          {me && me.profile ? (
+            <button className="main-nav-item" onClick={logout}>
+              <i className="fa fa-sign-out"></i>
+              Logout
+            </button>
+          ) : (
             <Link className="main-nav-item" to="/signin">
               <i className="fa fa-user-circle"></i>
               Sign In
             </Link>
-          </div>
-        )}
+          )}
+        </div>
       </nav>
       <Outlet />
       <footer className="footer">
