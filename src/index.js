@@ -9,6 +9,7 @@ import SignInPage from "./pages/SignInPage"
 import UsersPage from "./pages/UsersPage"
 import { Provider } from "react-redux"
 import store from "./store"
+import ProfilePage from "./pages/ProfilePage"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
@@ -20,6 +21,7 @@ root.render(
             <Route path="/" element={<HomePage />} />
             <Route path="signin" element={<SignInPage />} />
             <Route path="users" element={<UsersPage />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
         </Routes>
       </BrowserRouter>

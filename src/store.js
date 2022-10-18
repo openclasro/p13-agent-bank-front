@@ -17,7 +17,6 @@ export const meSlice = createSlice({
     },
   },
 })
-console.log("meSlice", meSlice)
 export default configureStore({
   reducer: {
     me: meSlice.reducer,

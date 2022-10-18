@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 export default function UsersPage() {
   const me = useSelector((state) => state.me)
@@ -21,7 +21,9 @@ export default function UsersPage() {
             <br />
             {me.profile.firstName} {me.profile.lastName}!
           </h1>
-          <button className="edit-button">Edit Name</button>
+          <Link to="/profile" className="edit-button">
+            My profile
+          </Link>
         </div>
       ) : null}
 
