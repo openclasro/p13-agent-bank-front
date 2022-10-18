@@ -6,9 +6,11 @@ export const meSlice = createSlice({
   initialState: null,
   reducers: {
     signIn(state, action) {
-      return { token: action.payload }
+      console.log(action)
+      return { token: action.payload.token }
     },
     setMe(state, action) {
+      console.log(action)
       state.profile = action.payload
       return state
     },

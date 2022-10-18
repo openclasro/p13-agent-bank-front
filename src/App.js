@@ -1,9 +1,11 @@
 import "./App.css"
 import { Outlet } from "react-router-dom"
-
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
 function App() {
+  const me = useSelector((state) => state.me)
+
   return (
     <div>
       <nav className="main-nav">
@@ -16,12 +18,14 @@ function App() {
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
 
-        <div>
-          <Link className="main-nav-item" to="/signin">
-            <i className="fa fa-user-circle"></i>
-            Sign In
-          </Link>
-        </div>
+        {me && me.profile ? null : (
+          <div>
+            <Link className="main-nav-item" to="/signin">
+              <i className="fa fa-user-circle"></i>
+              Sign In
+            </Link>
+          </div>
+        )}
       </nav>
       <Outlet />
       <footer className="footer">

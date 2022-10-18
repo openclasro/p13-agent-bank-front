@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import { meSlice } from "../store"
+import { Link } from "react-router-dom"
 
 export default function HomePage() {
   const me = useSelector((state) => state.me)
+  console.log(me)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -42,6 +44,7 @@ export default function HomePage() {
           <p className="text">Open a savings account with Argent Bank today!</p>
         </section>
       </div>
+      <Link to="/users">Users</Link>
       <section className="features">
         <h2 className="sr-only">Features</h2>
         <div className="feature-item">

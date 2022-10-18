@@ -20,7 +20,7 @@ export default function SignInPage() {
         password: password,
       })
       .then((res) => {
-        dispatch(meSlice.actions.signIn(res.data.body.token))
+        dispatch(meSlice.actions.signIn({ token: res.data.body.token }))
         navigate("/")
       })
       .catch((err) => {
