@@ -2,17 +2,19 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
+import { selectMe } from '../selectors'
 import { signIn } from "../features/me"
+
 
 export default function SignInPage() {
   const [username, setUsername] = useState("tony@stark.com")
   const [password, setPassword] = useState("password123")
 
   const dispatch = useDispatch()
-  const me = useSelector((state) => state.me)
+  const me = useSelector(selectMe)
   const navigate = useNavigate()
 
-  function signIn() {
+  function handleSignInClick() {
     axios
       .post("http://localhost:3001/api/v1/user/login", {
         email: username,
@@ -36,7 +38,7 @@ export default function SignInPage() {
         <form
           onSubmit={(e) => {
             e.preventDefault()
-            signIn()
+            handleSignInClick()
           }}
         >
           <div className="input-wrapper">

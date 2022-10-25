@@ -2,14 +2,15 @@ import "./App.css"
 import { Outlet, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { logout } from "./features/me"
+import { selectMe } from './selectors'
+import { logout } from './features/me'
 
 function App() {
-  const me = useSelector((state) => state.me)
+  const me = useSelector(selectMe)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  function logout() {
+  function handleLogoutClick() {
     dispatch(logout())
     navigate("/")
   }
@@ -26,7 +27,7 @@ function App() {
         </Link>
         <div>
           {me && me.profile ? (
-            <button className="main-nav-item" onClick={logout}>
+            <button className="main-nav-item" onClick={handleLogoutClick}>
               <i className="fa fa-sign-out"></i>
               Logout
             </button>

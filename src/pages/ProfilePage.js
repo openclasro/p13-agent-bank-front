@@ -3,9 +3,11 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { setMe } from "../features/me"
+import { selectMe } from '../selectors'
+
 
 export default function ProfilePage() {
-  const me = useSelector((state) => state.me)
+  const me = useSelector(selectMe)
   const loggedIn = me && me.profile
 
   const [firstname, setFirstname] = useState(

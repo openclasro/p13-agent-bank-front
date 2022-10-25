@@ -3,9 +3,11 @@ import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import { setMe } from "../features/me"
 import { Link } from "react-router-dom"
+import { selectMe } from '../selectors'
+
 
 export default function HomePage() {
-  const me = useSelector((state) => state.me)
+  const me = useSelector(selectMe)
   console.log("***************************", me)
   const dispatch = useDispatch()
 

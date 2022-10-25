@@ -1,9 +1,11 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, Link } from "react-router-dom"
+import { selectMe } from '../selectors'
+
 
 export default function UsersPage() {
-  const me = useSelector((state) => state.me)
+  const me = useSelector(selectMe)
   console.log("-----------------------------------------------------", me)
   const navigate = useNavigate()
 
