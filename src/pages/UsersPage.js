@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 
 export default function UsersPage() {
   const me = useSelector((state) => state.me)
+  console.log("-----------------------------------------------------", me)
   const navigate = useNavigate()
 
   useEffect(() => {
