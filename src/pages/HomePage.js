@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
-import { meSlice } from "../store"
+import { setMe } from "../features/me"
 import { Link } from "react-router-dom"
 
 export default function HomePage() {
   const me = useSelector((state) => state.me)
-  console.log(me)
+  console.log("***************************", me)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(me)
     if (me && me.token) {
       axios
         .post("http://localhost:3001/api/v1/user/profile", null, {
@@ -19,7 +18,8 @@ export default function HomePage() {
           },
         })
         .then((res) => {
-          dispatch(meSlice.actions.setMe(res.data.body))
+          console.log(res)
+          dispatch(setMe(res.data.body))
         })
         .catch((err) => {
           console.log(err)

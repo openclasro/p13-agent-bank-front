@@ -1,44 +1,53 @@
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { setMe } from "../features/me"
 
 export default function ProfilePage() {
   const me = useSelector((state) => state.me)
-  const [firstname, setFirstname] = useState(me.profile.firstName)
-  const [lastname, setLastname] = useState(me.profile.lastName)
-
-  const navigate = useNavigate()
-
   const loggedIn = me && me.profile
 
-  console.log(loggedIn)
+  const [firstname, setFirstname] = useState(
+    loggedIn ? me.profile.firstName : ""
+  )
+  const [lastname, setLastname] = useState(loggedIn ? me.profile.lastName : "")
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!loggedIn) {
       navigate("/signin")
     }
   }, [])
-
-  async function save() {
+  const dispatch = useDispatch()
+  function save() {
     console.log("envoyer", firstname, lastname)
 
-   await axios.put(
-      "http://localhost:3001/api/v1/user/profile",
-      {
-        firstName: firstname,
-        lastName: lastname,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${me.token}`,
+    axios
+      .put(
+        "http://localhost:3001/api/v1/user/profile",
+        {
+          firstName: firstname,
+          lastName: lastname,
         },
-      }
-    )
-    alert('Updated successfully!')
+        {
+          headers: {
+            Authorization: `Bearer ${me.token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(
+          "66666666666666666666666666666666666666666666666666666666666666666666",
+          res
+        )
+        navigate("/")
+        dispatch(setMe(res.data.body))
+        alert("Updated successfully!")
+      })
   }
-
-  if (!loggedIn) return
+  if (!loggedIn) return navigate("/signin")
 
   return (
     <section className="sign-in-content">
@@ -67,7 +76,7 @@ export default function ProfilePage() {
         </div>
 
         <button type="submit" className="sign-in-button">
-          Sign In
+          Update
         </button>
       </form>
     </section>

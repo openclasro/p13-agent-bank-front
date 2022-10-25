@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { meSlice } from "../store"
+import { signIn } from "../features/me"
 
 export default function SignInPage() {
   const [username, setUsername] = useState("tony@stark.com")
@@ -10,7 +10,6 @@ export default function SignInPage() {
 
   const dispatch = useDispatch()
   const me = useSelector((state) => state.me)
-  console.log(me)
   const navigate = useNavigate()
 
   function signIn() {
@@ -20,7 +19,8 @@ export default function SignInPage() {
         password: password,
       })
       .then((res) => {
-        dispatch(meSlice.actions.signIn({ token: res.data.body.token }))
+        console.log("res", res)
+        dispatch(signIn({ token: res.data.body.token }))
         navigate("/")
       })
       .catch((err) => {

@@ -2,7 +2,7 @@ import "./App.css"
 import { Outlet, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { meSlice } from "./store"
+import { logout } from "./features/me"
 
 function App() {
   const me = useSelector((state) => state.me)
@@ -10,7 +10,7 @@ function App() {
   const dispatch = useDispatch()
 
   function logout() {
-    dispatch(meSlice.actions.logout())
+    dispatch(logout())
     navigate("/")
   }
   return (
