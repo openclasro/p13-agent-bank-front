@@ -3,12 +3,10 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { setMe } from "../features/me"
-import { selectMe } from '../selectors'
+import { selectMe } from "../selectors"
 import EditForm from "../components/EditForm"
 
-
-
-export default function ProfilePage() {
+export default function MyProfile({ onCancel }) {
   const me = useSelector(selectMe)
   const loggedIn = me && me.profile
 
@@ -53,41 +51,52 @@ export default function ProfilePage() {
   }
   if (!loggedIn) return navigate("/signin")
 
-  return (<>  <section className="sign-in-content">
-    <h1>Profile</h1>
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        save()
-      }}
-    >
-      <div className="input-wrapper">
-        <label htmlFor="firstname">Firstname</label>
-        <input
-          id="firstname"
-          value={firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
+  return (
+    <div className="my-profile">
+      <h1>Profile</h1>
+      <div className="accountHeader">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            save()
+          }}
+        >
+          <div className="inputs-wrapper">
+            <div className="input-wrapper">
+              <label htmlFor="firstName"></label>
+              <input
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="Firstname"
+                required
+              />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="lastName"></label>
+              <input
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Lastname"
+                required
+              />
+            </div>
+          </div>
+          <div className="button-group">
+            <button className="btn" type="button" onClick={onCancel}>
+              Cancel
+            </button>
+            <button className="edit-button" type="submit">
+              Save
+            </button>
+          </div>
+        </form>
       </div>
-      <div className="input-wrapper">
-        <label htmlFor="lastname">Lastname</label>
-        <input
-          id="lastname"
-          value={lastname}
-          onChange={(e) => setLastname(e.target.value)}
-        />
-      </div>
-
-      <button type="submit" className="sign-in-button">
-        Update
-      </button>
-    </form>
-    <EditForm />
-  </section>
-
-  </>
-
-
-
+    </div>
   )
 }

@@ -16,7 +16,7 @@ body {
 .main {
   flex: 1;
 }
- .bg-dark {
+.bg-dark {
   background-color: #12002b;
 }
 
@@ -286,4 +286,30 @@ body {
   .transaction-button {
     width: 200px;
   }
+}
+
+.profile-form {
+  padding: 0px 120px;
+}
+
+.my-profile .inputs-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.my-profile .inputs-wrapper > div {
+  margin: 8px;
+}
+
+.my-profile .button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.my-profile .button-group > button {
+  margin: 8px;
+}
+
+.my-profile h1 {
+  color: white;
 }
