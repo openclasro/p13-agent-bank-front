@@ -13,19 +13,6 @@ export default function HomePage() {
 
   useEffect(() => {
     if (me && me.token) {
-      axios
-        .post("http://localhost:3001/api/v1/user/profile", null, {
-          headers: {
-            Authorization: `Bearer ${me.token}`,
-          },
-        })
-        .then((res) => {
-          console.log(res)
-          dispatch(setMe(res.data.body))
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     }
   }, [])
 
@@ -38,7 +25,7 @@ export default function HomePage() {
         }}
       >
         <section className="hero-content">
-          {me && me.profile ? <h1>Bonjour, {me.profile.firstName}</h1> : null}
+          {me ? <h1>Bonjour, {me.firstName}</h1> : null}
           <h2 className="sr-only">Promoted Content</h2>
           <p className="subtitle">No fees.</p>
           <p className="subtitle">No minimum deposit.</p>
@@ -46,7 +33,6 @@ export default function HomePage() {
           <p className="text">Open a savings account with Argent Bank today!</p>
         </section>
       </div>
-      <Link to="/users">Users</Link>
       <section className="features">
         <h2 className="sr-only">Features</h2>
         {/* <div className="feature-item">

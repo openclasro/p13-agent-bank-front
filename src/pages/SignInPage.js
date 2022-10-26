@@ -2,9 +2,8 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { selectMe } from '../selectors'
-import { signIn } from "../features/me"
-
+import { selectMe } from "../selectors"
+import { setMe } from "../features/me"
 
 export default function SignInPage() {
   const [username, setUsername] = useState("tony@stark.com")
@@ -20,14 +19,21 @@ export default function SignInPage() {
         email: username,
         password: password,
       })
-      .then((res) => {
-        console.log("res", res)
-        dispatch(signIn({ token: res.data.body.token }))
-        navigate("/")
+      .then((signInRes) => {
+        axios
+          .post("http://localhost:3001/api/v1/user/profile", null, {
+            headers: {
+              Authorization: `Bearer ${signInRes.data.body.token}`,
+            },
+          })
+          .then((userRes) => {
+            dispatch(
+              setMe({ ...userRes.data.body, token: signInRes.data.body.token })
+            )
+            navigate("/profile")
+          })
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch((err) => console.log(err))
   }
 
   return (

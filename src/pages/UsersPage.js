@@ -16,7 +16,7 @@ export default function UsersPage() {
     }
   }, [])
 
-  if (!me || !me.profile) {
+  if (!me) {
     return null
   }
 
@@ -29,7 +29,7 @@ export default function UsersPage() {
           <h1>
             Welcome back
             <br />
-            {me.profile.firstName} {me.profile.lastName}!
+            {me.firstName} {me.lastName}!
           </h1>
           <button
             onClick={() => setShowMyProfile(!showMyProfile)}

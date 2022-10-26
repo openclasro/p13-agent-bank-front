@@ -8,12 +8,10 @@ import EditForm from "../components/EditForm"
 
 export default function MyProfile({ onCancel }) {
   const me = useSelector(selectMe)
-  const loggedIn = me && me.profile
+  const loggedIn = me
 
-  const [firstname, setFirstname] = useState(
-    loggedIn ? me.profile.firstName : ""
-  )
-  const [lastname, setLastname] = useState(loggedIn ? me.profile.lastName : "")
+  const [firstname, setFirstname] = useState(loggedIn ? me.firstName : "")
+  const [lastname, setLastname] = useState(loggedIn ? me.lastName : "")
 
   const navigate = useNavigate()
 

@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { selectMe } from './selectors'
-import { logout } from './features/me'
+import { selectMe } from "./selectors"
+import { logout } from "./features/me"
 
 function App() {
   const me = useSelector(selectMe)
@@ -25,11 +25,15 @@ function App() {
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
         <div>
-          {me && me.profile ? (
-            <button className="main-nav-item" onClick={handleLogoutClick}>
+          {me ? (
+            <Link
+              href="#"
+              className="main-nav-item"
+              onClick={handleLogoutClick}
+            >
               <i className="fa fa-sign-out"></i>
               Logout
-            </button>
+            </Link>
           ) : (
             <Link className="main-nav-item" to="/signin">
               <i className="fa fa-user-circle"></i>

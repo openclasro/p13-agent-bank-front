@@ -1,25 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit"
 
 const { reducer, actions } = createSlice({
-    name: "me",
-    initialState: null,
-    reducers: {
-        signIn(state, action) {
-        console.log("action", action)
-        return { token: action.payload.token }
-        },
-        setMe(state, action) {
-        console.log("********************", action)
-        state.profile = action.payload
-        return state
-        },
-        logout() {
-        return null
-        },
+  name: "me",
+  initialState: null,
+  reducers: {
+    setMe(state, action) {
+      console.log("********************", action)
+      return action.payload
     },
+    logout() {
+      return null
+    },
+  },
 })
-  
 
-export const { signIn, setMe, logout } = actions
+export const { setMe, logout } = actions
 
 export default reducer
