@@ -3,8 +3,8 @@ import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import { setMe } from "../features/me"
 import { Link } from "react-router-dom"
-import { selectMe } from '../selectors'
-
+import { selectMe } from "../selectors"
+import FeatureItem from "../components/FeatureItem"
 
 export default function HomePage() {
   const me = useSelector(selectMe)
@@ -49,7 +49,7 @@ export default function HomePage() {
       <Link to="/users">Users</Link>
       <section className="features">
         <h2 className="sr-only">Features</h2>
-        <div className="feature-item">
+        {/* <div className="feature-item">
           <img
             src={require("../assets/images/icon-chat.png")}
             alt="Chat Icon"
@@ -60,7 +60,8 @@ export default function HomePage() {
             Need to talk to a representative? You can get in touch through our
             24/7 chat or through a phone call in less than 5 minutes.
           </p>
-        </div>
+        </div> */}
+        <FeatureItem />
         <div className="feature-item">
           <img
             src={require("../assets/images/icon-money.png")}

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { setMe } from "../features/me"
 import { selectMe } from '../selectors'
+import EditForm from "../components/EditForm"
+
 
 
 export default function ProfilePage() {
@@ -51,36 +53,41 @@ export default function ProfilePage() {
   }
   if (!loggedIn) return navigate("/signin")
 
-  return (
-    <section className="sign-in-content">
-      <h1>Profile</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          save()
-        }}
-      >
-        <div className="input-wrapper">
-          <label htmlFor="firstname">Firstname</label>
-          <input
-            id="firstname"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-          />
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="lastname">Lastname</label>
-          <input
-            id="lastname"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
-          />
-        </div>
+  return (<>  <section className="sign-in-content">
+    <h1>Profile</h1>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        save()
+      }}
+    >
+      <div className="input-wrapper">
+        <label htmlFor="firstname">Firstname</label>
+        <input
+          id="firstname"
+          value={firstname}
+          onChange={(e) => setFirstname(e.target.value)}
+        />
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="lastname">Lastname</label>
+        <input
+          id="lastname"
+          value={lastname}
+          onChange={(e) => setLastname(e.target.value)}
+        />
+      </div>
 
-        <button type="submit" className="sign-in-button">
-          Update
-        </button>
-      </form>
-    </section>
+      <button type="submit" className="sign-in-button">
+        Update
+      </button>
+    </form>
+    <EditForm />
+  </section>
+
+  </>
+
+
+
   )
 }
