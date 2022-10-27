@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { setMe } from "../features/me"
 import { selectMe } from "../selectors"
-import EditForm from "../components/EditForm"
 
-export default function MyProfile({ onCancel }) {
+export default function EditProfile({ onCancel }) {
   const me = useSelector(selectMe)
   const loggedIn = me
 

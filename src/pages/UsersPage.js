@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, Link } from "react-router-dom"
 import AccountList from "../components/AccountList"
-import ProfilePage from "./ProfilePage"
+import EditProfile from "../components/EditProfile"
 
 export default function UsersPage() {
   const me = useSelector((state) => state.me)
@@ -23,7 +23,7 @@ export default function UsersPage() {
   return (
     <main className="main bg-dark">
       {showMyProfile ? (
-        <ProfilePage onCancel={() => setShowMyProfile(false)} />
+        <EditProfile onCancel={() => setShowMyProfile(false)} />
       ) : (
         <div className="header">
           <h1>
