@@ -27,10 +27,16 @@ export default function Header() {
       </Link>
       <div>
         {me ? (
-          <button className="main-nav-item" onClick={handleLogoutClick}>
-            <i className="fa fa-sign-out"></i>
-            Logout
-          </button>
+          <>
+            <Link to="/profile" className="main-nav-item">
+              <i className="fa fa-user"></i>
+              {me.firstName}
+            </Link>
+            <Link className="main-nav-item" onClick={handleLogoutClick}>
+              <i className="fa fa-sign-out"></i>
+              Logout
+            </Link>
+          </>
         ) : (
           <Link className="main-nav-item" to="/signin">
             <i className="fa fa-user-circle"></i>
