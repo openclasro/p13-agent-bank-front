@@ -1,10 +1,26 @@
-const Header = () => {
+import { Link } from "react-router-dom"
+import logo from "../assets/images/argentBankLogo.png"
+import { useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { selectMe } from "../selectors"
+import { logout } from "../features/me"
+
+export default function Header() {
+  const me = useSelector(selectMe)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  function handleLogoutClick() {
+    dispatch(logout())
+    navigate("/")
+  }
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
         <img
           className="main-nav-logo-image"
-          src={require("./assets/images/argentBankLogo.png")}
+          src={logo}
           alt="Argent Bank Logo"
         />
         <h1 className="sr-only">Argent Bank</h1>
@@ -25,5 +41,3 @@ const Header = () => {
     </nav>
   )
 }
-
-export default Header
