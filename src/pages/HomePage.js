@@ -5,6 +5,8 @@ import { setMe } from "../features/me"
 import { Link } from "react-router-dom"
 import { selectMe } from "../selectors"
 import FeatureItem from "../components/FeatureItem"
+import Hero from "../components/Hero"
+import FeatureList from "../components/FeatureList"
 
 export default function HomePage() {
   const me = useSelector(selectMe)
@@ -18,62 +20,8 @@ export default function HomePage() {
 
   return (
     <main>
-      <div
-        className="hero"
-        style={{
-          backgroundImage: `url(${require("../assets/images/bank-tree.jpeg")})`,
-        }}
-      >
-        <section className="hero-content">
-          {me ? <h1>Bonjour, {me.firstName}</h1> : null}
-          <h2 className="sr-only">Promoted Content</h2>
-          <p className="subtitle">No fees.</p>
-          <p className="subtitle">No minimum deposit.</p>
-          <p className="subtitle">High interest rates.</p>
-          <p className="text">Open a savings account with Argent Bank today!</p>
-        </section>
-      </div>
-      <section className="features">
-        <h2 className="sr-only">Features</h2>
-        {/* <div className="feature-item">
-          <img
-            src={require("../assets/images/icon-chat.png")}
-            alt="Chat Icon"
-            className="feature-icon"
-          />
-          <h3 className="feature-item-title">You are our #1 priority</h3>
-          <p>
-            Need to talk to a representative? You can get in touch through our
-            24/7 chat or through a phone call in less than 5 minutes.
-          </p>
-        </div> */}
-        <FeatureItem />
-        <div className="feature-item">
-          <img
-            src={require("../assets/images/icon-money.png")}
-            alt="Chat Icon"
-            className="feature-icon"
-          />
-          <h3 className="feature-item-title">
-            More savings means higher rates
-          </h3>
-          <p>
-            The more you save with us, the higher your interest rate will be!
-          </p>
-        </div>
-        <div className="feature-item">
-          <img
-            src={require("../assets/images/icon-security.png")}
-            alt="Chat Icon"
-            className="feature-icon"
-          />
-          <h3 className="feature-item-title">Security you can trust</h3>
-          <p>
-            We use top of the line encryption to make sure your data and money
-            is always safe.
-          </p>
-        </div>
-      </section>
+      <Hero />
+      <FeatureList />
     </main>
   )
 }
