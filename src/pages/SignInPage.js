@@ -10,30 +10,36 @@ export default function SignInPage() {
   const [password, setPassword] = useState("password123")
 
   const dispatch = useDispatch()
-  const me = useSelector(selectMe)
+
   const navigate = useNavigate()
 
-  function handleSignInClick() {
-    axios
-      .post("http://localhost:3001/api/v1/user/login", {
+  async function handleSignInClick() {
+    const signInResponse = await axios.post(
+      "http://localhost:3001/api/v1/user/login",
+      {
         email: username,
         password: password,
+      }
+    )
+
+    const profileResponse = await axios.post(
+      "http://localhost:3001/api/v1/user/profile",
+      null,
+      {
+        headers: {
+          Authorization: `Bearer ${signInResponse.data.body.token}`,
+        },
+      }
+    )
+    console.log("coucoooooooooooooooooooooooo", profileResponse)
+
+    dispatch(
+      setMe({
+        ...profileResponse.data.body,
+        token: signInResponse.data.body.token,
       })
-      .then((signInRes) => {
-        axios
-          .post("http://localhost:3001/api/v1/user/profile", null, {
-            headers: {
-              Authorization: `Bearer ${signInRes.data.body.token}`,
-            },
-          })
-          .then((userRes) => {
-            dispatch(
-              setMe({ ...userRes.data.body, token: signInRes.data.body.token })
-            )
-            navigate("/profile")
-          })
-      })
-      .catch((err) => console.log(err))
+    )
+    navigate("/profile")
   }
 
   return (

@@ -314,3 +314,7 @@ body {
 .my-profile h1 {
   color: white;
 }
+
+.my-profile {
+  margin-bottom: 3rem;
+}

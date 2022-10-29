@@ -12,7 +12,6 @@ export default function Header() {
 
   function handleLogoutClick() {
     dispatch(logout())
-    navigate("/")
   }
 
   return (
@@ -32,7 +31,11 @@ export default function Header() {
               <i className="fa fa-user"></i>
               {me.firstName}
             </Link>
-            <Link className="main-nav-item" onClick={handleLogoutClick}>
+            <Link
+              to="/signin"
+              className="main-nav-item"
+              onClick={handleLogoutClick}
+            >
               <i className="fa fa-sign-out"></i>
               Logout
             </Link>

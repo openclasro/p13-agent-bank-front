@@ -33,6 +33,7 @@ export default function FeatureList() {
       <h2 className="sr-only">Features</h2>
       {FEATURES.map(({ name, image, description, alt }) => (
         <FeatureItem
+          key={name}
           name={name}
           image={image}
           description={description}

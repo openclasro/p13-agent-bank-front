@@ -3,9 +3,10 @@ import { useSelector } from "react-redux"
 import { useNavigate, Link } from "react-router-dom"
 import AccountList from "../components/AccountList"
 import EditProfile from "../components/EditProfile"
+import { selectMe } from "../selectors"
 
 export default function UsersPage() {
-  const me = useSelector((state) => state.me)
+  const me = useSelector(selectMe)
   console.log("-----------------------------------------------------", me)
   const navigate = useNavigate()
   const [showMyProfile, setShowMyProfile] = useState(false)
@@ -32,7 +33,9 @@ export default function UsersPage() {
             {me.firstName} {me.lastName}!
           </h1>
           <button
-            onClick={() => setShowMyProfile(!showMyProfile)}
+            onClick={() => {
+              setShowMyProfile(true)
+            }}
             className="edit-button"
           >
             My profile
