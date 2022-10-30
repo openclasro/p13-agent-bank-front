@@ -173,6 +173,10 @@ body {
   padding: 2rem;
 }
 
+.pb {
+  padding-bottom: 3rem;
+}
+
 .sign-in-icon {
   font-size: 5rem;
 }
@@ -317,4 +321,8 @@ body {
 
 .my-profile {
   margin-bottom: 3rem;
+}
+
+.account-list {
+  padding-bottom: 3rem;
 }

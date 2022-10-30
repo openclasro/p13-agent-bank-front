@@ -118,7 +118,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Module
+        - Transactions
       summary: Current month transactions
       description: Returns all the transactions of current month
       parameters:
@@ -127,12 +127,6 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        # - in: body
-        #   name: body
-        #   description: Update user profile attributes
-        #   required: true
-        #   schema:
-        #     $ref: '#/definitions/Transaction'
       produces:
         - application/json
       responses:
@@ -151,7 +145,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Module
+        - Transactions
       summary: Transaction by ID
       description: Returns the details of a transaction by ID
       parameters:
@@ -180,7 +174,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Module
+        - Transactions
       summary: Update a Transaction
       description: Update a Transaction by ID
       parameters:
@@ -195,16 +189,16 @@ paths:
           required: true
           description: ID of a Transaction
         - in: body
-          name: transactionId
+          name: transaction
           schema:
             $ref: '#/definitions/NewTransaction'
           required: true
-          description: ID of a Transaction
+          description: Updated transaction
       produces:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: Transaction updated successfully
           schema:
             $ref: '#/definitions/Transaction'
         '404':
@@ -217,7 +211,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Module
+        - Transactions
       summary: Delete a Transaction
       description: Delete a Transaction by ID
       parameters:
@@ -248,7 +242,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Module
+        - Transactions
       summary: Transaction by ID
       description: Returns the details of a transaction by ID
       parameters:
@@ -258,16 +252,16 @@ paths:
           required: true
           type: string
         - in: body
-          name: transactionId
+          name: transaction
           schema:
             $ref: '#/definitions/NewTransaction'
           required: true
-          description: ID of a Transaction
+          description: New transaction
       produces:
         - application/json
       responses:
-        '200':
-          description: User profile retrieved successully
+        '201':
+          description: Transaction created successfully
           schema:
             $ref: '#/definitions/Transaction'
         '400':

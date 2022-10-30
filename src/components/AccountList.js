@@ -2,7 +2,7 @@ import AccountItem from "./AccountItem"
 
 export default function AccountList() {
   return (
-    <>
+    <div className="account-list">
       <h2 className="sr-only">Accounts</h2>
       <AccountItem
         title="Argent Bank Checking (x8349)"
@@ -19,6 +19,6 @@ export default function AccountList() {
         amount="184.30"
         onViewTransactionClick={() => {}}
       />
-    </>
+    </div>
   )
 }
