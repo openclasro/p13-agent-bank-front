@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Connection with the server
 
-The server must be runnin on http://localhost:3001. Follow the instructions in the following [Repo](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
+The Argent Bank API must be running on http://localhost:3001. Follow the instructions in the following [Repo](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
 
 ## Available Scripts
 
