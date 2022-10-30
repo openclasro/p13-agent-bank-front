@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Connection with the server
+
+The server must be runnin on http://localhost:3001. Follow the instructions in the following [Repo](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
+
 ## Available Scripts
 
 In the project directory, you can run:
