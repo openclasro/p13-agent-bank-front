@@ -7,7 +7,6 @@ import { logout } from "../features/me"
 
 export default function Header() {
   const me = useSelector(selectMe)
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   function handleLogoutClick() {

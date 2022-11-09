@@ -2,7 +2,6 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { selectMe } from "../selectors"
 import { setMe } from "../features/me"
 
 export default function SignInPage() {
@@ -21,6 +20,7 @@ export default function SignInPage() {
         password: password,
       }
     )
+    console.log("AREZKI££££££££££££££££££££££££££3", signInResponse)
 
     const profileResponse = await axios.post(
       "http://localhost:3001/api/v1/user/profile",

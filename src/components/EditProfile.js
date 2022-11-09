@@ -20,6 +20,7 @@ export default function EditProfile({ onCancel }) {
     }
   }, [])
   const dispatch = useDispatch()
+
   function save() {
     console.log("envoyer", firstname, lastname)
 
@@ -32,15 +33,12 @@ export default function EditProfile({ onCancel }) {
         },
         {
           headers: {
-            Authorization: `Bearer ${me.token}`,
+            Authorization: `Bearer ${me.token}`, // JWT - JSON Web Token
           },
         }
       )
       .then((res) => {
-        console.log(
-          "66666666666666666666666666666666666666666666666666666666666666666666",
-          res
-        )
+        console.log("666666666666", res)
         navigate("/")
         dispatch(setMe(res.data.body))
         alert("Updated successfully!")

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import AccountList from "../components/AccountList"
 import EditProfile from "../components/EditProfile"
 import { selectMe } from "../selectors"
 
 export default function UsersPage() {
   const me = useSelector(selectMe)
-  console.log("-----------------------------------------------------", me)
+  console.log("----------------------", me)
   const navigate = useNavigate()
   const [showMyProfile, setShowMyProfile] = useState(false)
 
